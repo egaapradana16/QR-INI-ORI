@@ -18,6 +18,18 @@ const drawRoundedRect = (ctx, x, y, width, height, radius) => {
     ctx.closePath();
 };
 
+const generateQRCodeFallback = async (config) => {
+    const { value, width, fgColor, bgColor, margin } = config;
+    const safeValue = encodeURIComponent(value || 'https://trickle.so');
+    const size = Math.max(256, Number(width) || 1024);
+    const fg = (fgColor || '#000000').replace('#', '');
+    const bg = (bgColor || '#ffffff').replace('#', '');
+    const marginValue = Math.max(0, Number(margin) || 4);
+
+    const url = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${safeValue}&color=${fg}&bgcolor=${bg}&margin=${marginValue}&format=png`;
+    return url;
+};
+
 const generateQRCode = async (config) => {
     try {
         const { 
@@ -37,8 +49,12 @@ const generateQRCode = async (config) => {
             showLabel
         } = config;
 
+        if (!window.QRCode || typeof window.QRCode.toCanvas !== 'function') {
+            return generateQRCodeFallback(config);
+        }
+
         const baseCanvas = document.createElement('canvas');
-        await QRCode.toCanvas(baseCanvas, value, {
+        await window.QRCode.toCanvas(baseCanvas, value, {
             width: width,
             margin: margin,
             color: {

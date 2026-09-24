@@ -22,7 +22,13 @@
     <link href="https://resource.trickle.so/vendor_lib/unpkg/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
     
     <!-- QR Code Library -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script>
+        window.QRCodeFallback = {
+            toCanvas: null,
+            toDataURL: null,
+            create: null
+        };
+    </script>
 
     <style type="text/tailwindcss">
     @layer theme {
