@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Generator Pro - Create Custom QR Codes</title>
+    <meta name="description" content="Professional QR code generator with custom colors, logos, and high-quality exports. Free and easy to use.">
+    <meta name="keywords" content="QR code, QR generator, custom QR, professional QR, brand QR">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="QR Generator Pro - Create Custom QR Codes">
+    <meta property="og:description" content="Generate professional, branded QR codes instantly. Customize colors, add logos, and download in high resolution.">
+    
+    <!-- Twitter -->
+    <meta name="twitter:title" content="QR Generator Pro - Create Custom QR Codes">
+    <meta name="twitter:description" content="Generate professional, branded QR codes instantly. Customize colors, add logos, and download in high resolution.">
+
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react@18/umd/react.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://resource.trickle.so/vendor_lib/unpkg/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+    
+    <!-- QR Code Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+
+    <style type="text/tailwindcss">
+    @layer theme {
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --background: #f8fafc;
+            --card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+    }
+
+    @layer base {
+        body {
+            @apply bg-[var(--background)] text-[var(--text-main)] font-sans selection:bg-blue-100;
+        }
+    }
+
+    @layer components {
+        .btn-primary {
+            @apply px-6 py-2.5 bg-[var(--primary)] text-white rounded-lg font-semibold hover:bg-[var(--primary-dark)] transition-all duration-200 flex items-center justify-center gap-2 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed;
+        }
+        .btn-outline {
+            @apply px-6 py-2.5 border-2 border-[var(--primary)] text-[var(--primary)] rounded-lg font-semibold hover:bg-blue-50 transition-all duration-200 flex items-center justify-center gap-2;
+        }
+        .input-field {
+            @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder:text-gray-400;
+        }
+        .card-container {
+            @apply bg-[var(--card)] rounded-xl shadow-xl border border-gray-100 overflow-hidden;
+        }
+        .section-title {
+            @apply text-xl font-bold flex items-center gap-2 mb-4;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .tab-btn {
+            @apply px-4 py-2 text-sm font-medium border-b-2 transition-all duration-200;
+        }
+        .tab-btn-active {
+            @apply border-blue-600 text-blue-600;
+        }
+        .tab-btn-inactive {
+            @apply border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel" src="utils/qrUtils.js"></script>
+    <script type="text/babel" src="components/Header.js"></script>
+    <script type="text/babel" src="components/QRForm.js"></script>
+    <script type="text/babel" src="components/QRPreview.js"></script>
+    <script type="text/babel" src="components/Footer.js"></script>
+    <script type="text/babel" src="app.js"></script>
+</body>
+</html>
